@@ -1,7 +1,6 @@
 package com.softserve.edu.service.impl;
 
 import com.softserve.edu.entity.Marathon;
-import com.softserve.edu.exception.MyCustomException;
 import com.softserve.edu.repository.MarathonRepository;
 import com.softserve.edu.service.MarathonService;
 import lombok.Data;

@@ -1,15 +1,12 @@
 package com.softserve.edu.controller;
 
 
-import com.softserve.edu.exception.MyCustomException;
+import com.softserve.edu.exception.ResourceNotFoundException;
 import com.softserve.edu.service.MarathonService;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/marathons")
@@ -36,7 +33,7 @@ public class MarathonController {
 
     @GetMapping("/add")
     String gotoMarathon(Model model) {
-        throw new MyCustomException("Hello from exception");
+        throw new ResourceNotFoundException("Hello from exception");
     }
 
     //TODO implement other needed methods

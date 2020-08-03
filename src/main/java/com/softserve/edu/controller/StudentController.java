@@ -3,7 +3,7 @@ package com.softserve.edu.controller;
 import com.softserve.edu.entity.Marathon;
 import com.softserve.edu.entity.Role;
 import com.softserve.edu.entity.User;
-import com.softserve.edu.exception.MyCustomException;
+import com.softserve.edu.exception.ResourceNotFoundException;
 import com.softserve.edu.service.MarathonService;
 import com.softserve.edu.service.UserService;
 import org.slf4j.Logger;
@@ -35,7 +35,7 @@ public class StudentController {
 
     @GetMapping("/add")
     String gotoStudent(Model model) {
-        throw new MyCustomException("from Student");
+        throw new ResourceNotFoundException("from Student");
 
 //        model.addAttribute("student", new User());
 //        return "student";
