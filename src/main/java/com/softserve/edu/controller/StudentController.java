@@ -3,7 +3,7 @@ package com.softserve.edu.controller;
 import com.softserve.edu.entity.Marathon;
 import com.softserve.edu.entity.Role;
 import com.softserve.edu.entity.User;
-import com.softserve.edu.exception.ResourceNotFoundException;
+import com.softserve.edu.exception.StudentNotFoundException;
 import com.softserve.edu.service.MarathonService;
 import com.softserve.edu.service.UserService;
 import org.slf4j.Logger;
@@ -11,6 +11,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.NoSuchElementException;
 
 
 @Controller
@@ -35,10 +37,10 @@ public class StudentController {
 
     @GetMapping("/add")
     String gotoStudent(Model model) {
-        throw new ResourceNotFoundException("from Student");
+        //throw new StudentNotFoundException("StudentNotFoundException");
 
-//        model.addAttribute("student", new User());
-//        return "student";
+       model.addAttribute("student", new User());
+       return "student";
     }
 
     @PostMapping("/add")
@@ -50,9 +52,15 @@ public class StudentController {
 
     @GetMapping("/edit/{id}")
     String edit(@PathVariable Integer id, Model model) {
-        User student = userService.findById(id);
-        model.addAttribute("student", student);
-        return "student_edit";
+        try {
+            User student = userService.findById(id);
+            model.addAttribute("student", student);
+            return "student_edit";
+        } catch (NoSuchElementException ex){
+            throw new StudentNotFoundException("StudentNotFoundException: "+ id);
+        }
+
+
     }
 
     @PostMapping("/edit/{id}")
