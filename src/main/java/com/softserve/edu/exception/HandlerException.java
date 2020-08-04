@@ -10,7 +10,7 @@ import java.util.NoSuchElementException;
 @ControllerAdvice
 public class HandlerException {
     @ExceptionHandler(ResourceNotFoundException.class)
-    public ModelAndView handleMyCustomException(ResourceNotFoundException exception){
+    public ModelAndView handleMyCustomException(ResourceNotFoundException exception) {
         ModelAndView model = new ModelAndView("error/error_page");
         model.addObject("info", exception.getMessage());
         model.setStatus(HttpStatus.BAD_REQUEST);
@@ -19,7 +19,6 @@ public class HandlerException {
 
     @ExceptionHandler(NoSuchElementException.class)
     public ModelAndView handleNoSuchElementException(NoSuchElementException ex) {
-
         ModelAndView model = new ModelAndView("error/error_page_404");
         model.addObject("info", "No such page");
         model.addObject("status", "404");
@@ -27,16 +26,12 @@ public class HandlerException {
 
     }
 
-
-    @ExceptionHandler(Exception.class)
+    @ExceptionHandler({Exception.class, InternalServerException.class})
     public ModelAndView handleAllException(Exception ex) {
-
         ModelAndView model = new ModelAndView("error/error_page_500");
         model.addObject("info", "Internal server error");
         model.addObject("status", "505");
         return model;
-
     }
-
 
 }
