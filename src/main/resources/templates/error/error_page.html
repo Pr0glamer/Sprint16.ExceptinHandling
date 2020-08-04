@@ -9,11 +9,10 @@
 </head>
 <body>
 <div th:insert="~{header :: menu}"/>
-<h1>Ooops, Something wrong</h1>
-<p></p>
-<h1>Error info</h1>
-<div th:text="${status}"></div>
+<h2>Ooops, Something wrong</h2>
+<h4>Error info:</h4>
+<div th:text="'Status: ' + ${status}"></div>
 <br>
-<div th:text="${info}"></div>
+<div th:text="'Message: ' +${info}"></div>
 </body>
 </html>

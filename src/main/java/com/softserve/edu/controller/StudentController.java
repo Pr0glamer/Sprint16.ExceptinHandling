@@ -3,6 +3,7 @@ package com.softserve.edu.controller;
 import com.softserve.edu.entity.Marathon;
 import com.softserve.edu.entity.Role;
 import com.softserve.edu.entity.User;
+import com.softserve.edu.exception.InternalServerException;
 import com.softserve.edu.exception.StudentNotFoundException;
 import com.softserve.edu.service.MarathonService;
 import com.softserve.edu.service.UserService;
@@ -37,8 +38,6 @@ public class StudentController {
 
     @GetMapping("/add")
     String gotoStudent(Model model) {
-        //throw new StudentNotFoundException("StudentNotFoundException");
-
        model.addAttribute("student", new User());
        return "student";
     }
@@ -56,11 +55,9 @@ public class StudentController {
             User student = userService.findById(id);
             model.addAttribute("student", student);
             return "student_edit";
-        } catch (NoSuchElementException ex){
-            throw new StudentNotFoundException("StudentNotFoundException: "+ id);
+        } catch (NoSuchElementException ex) {
+            throw new StudentNotFoundException("Student with id = " + id + " not found");
         }
-
-
     }
 
     @PostMapping("/edit/{id}")
@@ -76,7 +73,7 @@ public class StudentController {
     @GetMapping("/delete/{id}")
     String removeStudent(@PathVariable Integer id) {
         userService.removeStudent(userService.findById(id));
-        return "redirect:";
+        return "redirect:/students";
     }
 
     @GetMapping("/{id}")
@@ -91,8 +88,6 @@ public class StudentController {
     String addStudentToMarathon(@PathVariable("m_id") Integer marathonId, @PathVariable("s_id") Integer studentId, Model model) {
         userService.addToMarathon(studentId, marathonId);
         model.addAttribute("id", marathonId);
-        return "redirect:/students";
+        return "redirect:/marathons";
     }
-    //TODO implement needed methods
-
 }

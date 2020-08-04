@@ -45,18 +45,19 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void removeStudent(User byId) throws InternalServerException {
-        throw new InternalServerException("can't remove user");
+    public void removeStudent(User byId) {
+        userRepository.delete(byId);
     }
 
     @Override
     public void addToMarathon(Integer studentId, Integer marathonId) {
         User user = userRepository.findById(studentId).get();
         Marathon marathon = marathonRepository.findById(marathonId).get();
-//        user.getMarathons().add(marathon);
-        userRepository.save(user);
+        if (marathon.getUsers().contains(user)) {
+            throw new InternalServerException("User with id = " + user.getId() +
+                    " already added to " + marathon.getName());
+        }
+        marathon.getUsers().add(user);
+        marathonRepository.save(marathon);
     }
-
-    //TODO other needed methods
-
 }
