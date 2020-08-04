@@ -3,6 +3,7 @@ package com.softserve.edu.service.impl;
 import com.softserve.edu.entity.Marathon;
 import com.softserve.edu.entity.Role;
 import com.softserve.edu.entity.User;
+import com.softserve.edu.exception.InternalServerException;
 import com.softserve.edu.repository.MarathonRepository;
 import com.softserve.edu.repository.UserRepository;
 import com.softserve.edu.service.UserService;
@@ -44,8 +45,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void removeStudent(User byId) {
-        //TODO
+    public void removeStudent(User byId) throws InternalServerException {
+        throw new InternalServerException("can't remove user");
     }
 
     @Override
