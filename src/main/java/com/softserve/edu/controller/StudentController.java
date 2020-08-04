@@ -3,7 +3,6 @@ package com.softserve.edu.controller;
 import com.softserve.edu.entity.Marathon;
 import com.softserve.edu.entity.Role;
 import com.softserve.edu.entity.User;
-import com.softserve.edu.exception.InternalServerException;
 import com.softserve.edu.exception.StudentNotFoundException;
 import com.softserve.edu.service.MarathonService;
 import com.softserve.edu.service.UserService;

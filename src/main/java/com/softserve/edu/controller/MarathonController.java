@@ -3,7 +3,6 @@ package com.softserve.edu.controller;
 
 import com.softserve.edu.entity.Marathon;
 import com.softserve.edu.exception.MarathonNotFoundException;
-import com.softserve.edu.exception.StudentNotFoundException;
 import com.softserve.edu.service.MarathonService;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
